@@ -1,0 +1,9 @@
+version: '3'
+services:
+  spark-with-jupyter:
+    image: spark-with-jupyter:latest
+    ports:
+      - "8080:4040"
+      - "4041:4041"
+    volumes:
+      - ./data:/home/sam/app

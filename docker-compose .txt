@@ -1,0 +1,26 @@
+version: '3'
+services:
+  spark:
+    image: jupyter/all-spark-notebook:spark-3.5.0
+    ports:
+      - "4040:4040"
+    environment:
+      - SPARK_OPTS=--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info
+    networks:
+      - spark-network
+
+  jupyter:
+    image: jupyter/all-spark-notebook:spark-3.5.0
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./data:/home/jovyan/work
+    environment:
+      - JUPYTER_TOKEN=teste
+      - JUPYTER_ALLOW_INSECURE_WRITES='1'
+    networks:
+      - spark-network
+
+networks:
+  spark-network:
+    driver: bridge

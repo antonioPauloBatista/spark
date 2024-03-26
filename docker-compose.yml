@@ -1,0 +1,13 @@
+version: '3'
+services:
+  spark-with-jupyter:
+    image: easewithdata/pyspark-jupyter-lab:latest
+    ports:
+      - "4041:4040"
+      - "8888:8888"
+    volumes:
+      - ./data:/home/jupyter/work
+    environment:
+      - JUPYTER_TOKEN=teste
+      - JUPYTER_ALLOW_INSECURE_WRITES='1'
+      - SPARK_LOCAL_IP=localhost
